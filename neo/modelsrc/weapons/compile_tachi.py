@@ -1,7 +1,6 @@
 """Compile exported Tachi SMDs using Valve's Source SDK 2013 studiomdl.
 
 Run with Python 3: compile_tachi.py --compiler PATH --game PATH
-Runtime: approximately 3 seconds for both models on an i7-12700H.
 The destination must be a game folder containing gameinfo.txt. Compilation
 uses a temporary game configuration because SDK tools cannot resolve the
 client's |appid_244630| material mount. Only the resulting Tachi model files
