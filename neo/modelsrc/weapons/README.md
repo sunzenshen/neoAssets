@@ -59,8 +59,7 @@ blender --background --python-exit-code 1 --python export_tachi.py
 Use the full path to `blender.exe` if Blender is not on PATH. Export does not
 save edits for you. The helper opens the saved projects, checks preview-image
 paths, and exports them with Blender Source Tools. It does not import SMDs or
-recreate the Blender projects. Both models take about 5 seconds including
-Blender startup on an i7-12700H.
+recreate the Blender projects.
 
 ## Compile and preview in the game
 
@@ -78,7 +77,6 @@ copies the resulting model files into the chosen `models/weapons/` directory.
 This avoids SDK tools' inability to resolve neo's `|appid_244630|` search path;
 it does **not** edit your `gameinfo.txt` or Blender preferences. Compilation
 requires no material files. Runtime materials remain the installed game's.
-Both models take about 3 seconds on an i7-12700H.
 
 The QC remains the authority for activities, playback FPS, attachments,
 transition nodes, and frame-0 muzzle-flash events. Exporting an animation does
