@@ -1,12 +1,29 @@
-# v_nsf_tachi: reload of an empty Tachi with the slide held back
+# NSF Tachi animation source
 
-The shipped viewmodel recompiled with one added sequence, `reloadempty` (ACT_VM_RELOAD_EMPTY, 64 frames, 2.1 s
-like `reload`): the shipped `reload` with the `slide` bone held at its `idle01empty` value (back), eased
-forward over frames 54-62 (1.80-2.07 s) to the `reload` pose, as the Milso's shipped `reloadempty` releases its
-slide over frames 53-62. Every other sequence is the shipped one; the QC keeps the fire sequences' muzzle flash
-event.
+Open **`v_nsf_tachi.blend`** in Blender 5.2 or newer with Blender Source
+Tools enabled. The skinned hands and pistol are included, with `reloadempty`
+selected in the Action Editor. Preview textures resolve from
+`../tachi/textures/`; keep that folder alongside the team projects.
 
-Only the new animation is stored here. The reference mesh and the other animations are the shipped model
-decompiled with ntre's `proposals/0057-reload-cue-timing/tools/mdl2smd.py`; `segments.csv` is the row
-`segments_build.py` composed `reloadempty` from. Compiled with Valve's studiomdl (Source SDK Base 2013 MP),
-MDL v48. Recompiled shipped sequences match the shipped model within 0.01 u (`reload` within 0.14 u / 0.44 deg).
+See [the animation workflow](../README.md) for editing, exporting, compiling,
+CMake asset installation, and contributing changes.
+
+- Authoritative editable source: `v_nsf_tachi.blend`.
+- Preserved original reference mesh: `reference.smd` (not re-exported).
+- Generated clips: `anims/*.smd` (all 16 clips).
+- Compile definition: `v_nsf_tachi.qc`.
+- Runtime output: `models/weapons/v_nsf_tachi.*` in the chosen game folder.
+
+The empty reload spans frames **0–63 at 30 fps** (2.1 seconds between the
+first and last frame). The `slide` bone stays in its `idle01empty` pose, then
+returns forward over frames **54–62**, after the new magazine is seated.
+Compare the `reload` slot for a partial reload and `idle01empty` for the
+locked-back pose. Every clip uses the original 54-bone hierarchy.
+
+Use Scene Properties > Source Engine Export > **Export Scene** to rebuild
+all SMDs beside this project. Save the Blender file first. The QC preserves
+activities, attachments, transition nodes, and firing muzzle-flash events;
+review it when adding or renaming animation slots.
+
+`segments.csv` records the initial empty-reload composition. It is historical
+provenance, not an input required to edit or rebuild this Blender project.
