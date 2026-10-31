@@ -10,9 +10,7 @@ sequences for segmented reloads (no activity: code picks them by name), built by
 | `reload_partial` | 67 / 2.200 | reload f0-56, 10-frame exit to idle |
 | `reload_from_drop_dry` | 79 / 2.600 | 27-frame reach idle -> f30, reload f30-81 |
 | `reload_from_drop_partial` | 64 / 2.100 | reach 27 -> f30, f30-56, exit 10 |
-| `reload_from_seat_dry` | 54 / 1.767 | reach 20 -> f48, f48-81 |
-| `reload_from_seat_partial` | 39 / 1.267 | reach 20 -> f48, f48-56, exit 10 |
-| `reload_from_slap_dry` | 51 / 1.667 | reach 30 -> f61, f61-81 |
+| `reload_from_seat_dry` | 51 / 1.667 | reach 30 -> f61, f61-81 |
 | `draw_resume_drop_dry` | 85 / 2.800 | resume after the drop: the draw one-handed, support arm and magazine held out of view as at reload f30, 9-frame tilt to f30, f30-81 |
 | `draw_resume_drop_partial` | 70 / 2.300 | the same draw and tilt, f30-56, exit 10 |
 
