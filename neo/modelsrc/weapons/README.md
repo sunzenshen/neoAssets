@@ -101,3 +101,13 @@ phases file is `weapon_mosok41_reload_phases.txt` and neo's `weapon_m41.txt` inc
   all three sound slots. The wavs are the research cuts, not re-cut by the ZR68C method.
 - Compiled `v_jinrai_mosok41.*`, `v_nsf_mosok41.*` are new in neoAssets (only the `mosok41l` models were here); their
   vertex data has the shipped size and 5 materials, not compared byte for byte.
+
+## Sketch status
+
+Parked until the ZR68C MVP gets reviewer feedback.
+
+### Per-gun TODO (M41)
+
+`composites.txt` takes no comments. Open: real base projects (animator pass, arm textures), name for a one-reload gun
+(`_empty` or bare), fire point (clip end vs `ReloadReadyBeforeEnd` 0.393 s), ship the compiled base models, six projects
+(M41, M41S, M41L, two teams) or shared clips, resume after `2_load`, run tests (flag on/off, bots, third person).
