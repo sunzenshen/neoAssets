@@ -10,12 +10,17 @@
 		"reload"
 		{
 			"1_unload" { "ammo" "0.633" "resume" "drawunloaded_reload" }
-			"2_load" { "ammo" "1.933" }
+			"2_load" { "ammo" "1.933" "resume" "drawtocycle_reload" }
+			"3_cycle" { "ammo" "2.933" }
 		}
 		"drawunloaded_reload"
 		{
-			"2_load" { "ammo" "1.967" "sound" "1.667" "sound_name" "weapon_srm.reload_load" }
+			"2_load" { "ammo" "1.967" "sound" "1.667" "sound_name" "weapon_srm.reload_load" "resume" "drawtocycle_reload" }
 			"3_cycle" { "ammo" "2.967" "sound" "2.567" "sound_name" "weapon_srm.reload_cycle" }
+		}
+		"drawtocycle_reload"
+		{
+			"3_cycle" { "ammo" "1.500" "sound" "1.100" "sound_name" "weapon_srm.reload_cycle" }
 		}
 	}
 }
