@@ -316,7 +316,7 @@
         "bone middle 3": {"cls": "fixed", "loc": [[-0.05, 0.051], [-0.051, 0.05], [-0.05, 0.051]], "lock_loc": [true, true, true], "lock_rot": [false, true, true], "order": "XYZ", "rot_deg": [[-0.5, 60.5], [-0.5, 0.51], [-0.5, 0.51]]},
         "bone middle 4": {"cls": "fixed", "loc": [[-0.051, 0.051], [-0.051, 0.051], [-0.051, 0.051]], "lock_loc": [true, true, true], "lock_rot": [false, true, true], "order": "XYZ", "rot_deg": [[-0.5, 45.51], [-0.51, 0.51], [-0.5, 0.51]]},
         "bone pinky 05": {"cls": "fixed", "loc": [[-0.051, 0.051], [-0.05, 0.051], [-0.051, 0.05]], "lock_loc": [true, true, true], "lock_rot": [true, true, true], "order": "XYZ", "rot_deg": [[-0.5, 0.51], [-0.51, 0.5], [-0.51, 0.5]]},
-        "bone pinky 06": {"cls": "free_rotate", "loc": [[-0.051, 0.051], [-0.051, 0.051], [-0.051, 0.051]], "lock_loc": [true, true, true], "lock_rot": [false, false, false], "order": "YZX", "rot_deg": [[-55.32, 0.51], [-2.56, 0.52], [-0.51, 8.38]]},
+        "bone pinky 06": {"cls": "free_rotate", "loc": [[-0.051, 0.051], [-0.051, 0.051], [-0.051, 0.051]], "lock_loc": [true, true, true], "lock_rot": [false, false, false], "order": "YZX", "rot_deg": [[-55.32, 0.51], [-2.56, 0.52], [-0.51, 10.09]], "why": "skipcycle curls the support hand past its range in the shipped clips on the way back to idle01 (about 1 deg); the pose is meant"},
         "bone pinky 07": {"cls": "hinge", "loc": [[-0.05, 0.051], [-0.05, 0.051], [-0.05, 0.051]], "lock_loc": [true, true, true], "lock_rot": [false, true, true], "order": "XYZ", "rot_deg": [[-40.36, 0.5], [-0.51, 0.5], [-0.51, 0.5]]},
         "bone pinky 08": {"cls": "hinge", "loc": [[-0.05, 0.051], [-0.051, 0.05], [-0.051, 0.05]], "lock_loc": [true, true, true], "lock_rot": [false, true, true], "order": "XYZ", "rot_deg": [[-30.36, 0.5], [-0.51, 0.5], [-0.5, 0.51]]},
         "bone pinky 1": {"cls": "fixed", "loc": [[-0.05, 0.051], [-0.051, 0.05], [-0.051, 0.05]], "lock_loc": [true, true, true], "lock_rot": [true, true, true], "order": "XYZ", "rot_deg": [[-0.51, 0.5], [-0.5, 0.51], [-0.51, 0.5]]},
@@ -336,7 +336,7 @@
         "bone thumb 06": {"cls": "hinge", "loc": [[-0.05, 0.051], [-0.051, 0.051], [-0.05, 0.051]], "lock_loc": [true, true, true], "lock_rot": [false, true, true], "order": "XYZ", "rot_deg": [[-14.02, 18.58], [-0.5, 0.51], [-0.5, 0.51]]},
         "bone thumb 1": {"cls": "hinge", "loc": [[-0.05, 0.051], [-0.05, 0.051], [-0.05, 0.051]], "lock_loc": [true, true, true], "lock_rot": [false, false, false], "order": "YZX", "rot_deg": [[-0.5, 20.6], [-0.72, 3.49], [-0.5, 5.58]]},
         "bone thumb 2": {"cls": "hinge", "loc": [[-0.05, 0.051], [-0.05, 0.051], [-0.051, 0.05]], "lock_loc": [true, true, true], "lock_rot": [false, true, true], "order": "XYZ", "rot_deg": [[-10.5, 24.5], [-0.5, 0.51], [-0.51, 0.5]]},
-        "bone thumb 3": {"cls": "hinge", "loc": [[-0.051, 0.05], [-0.051, 0.051], [-0.05, 0.051]], "lock_loc": [true, true, true], "lock_rot": [false, true, true], "order": "XYZ", "rot_deg": [[-0.5, 68.5], [-0.51, 0.5], [-0.5, 0.51]]}
+        "bone thumb 3": {"cls": "hinge", "loc": [[-0.051, 0.05], [-0.051, 0.051], [-0.05, 0.051]], "lock_loc": [true, true, true], "lock_rot": [false, true, true], "order": "XYZ", "rot_deg": [[-1.74, 68.5], [-0.51, 0.5], [-0.5, 0.51]], "why": "skipcycle curls the support hand past its range in the shipped clips on the way back to idle01 (about 1 deg); the pose is meant"}
       }
     },
     "mosok41l": {
