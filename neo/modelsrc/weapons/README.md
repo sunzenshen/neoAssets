@@ -1,12 +1,11 @@
 # Weapon model sources
 
-The Tachi viewmodels are the first weapons maintained under these conventions, followed by the MilSO.
+The Tachi and ZR68C viewmodels are the first weapons maintained under these conventions, followed by the MilSO.
 Expect the folder layout, scripts and steps here to change as more weapons are added.
 
 ## Change an animation (quick recipe)
 
-For example, a new pose in a slot of the Tachi. Run the commands from this folder. For the first time, do Setup
-below.
+For example, a new pose in a slot of the Tachi. Run the commands from this folder.
 
 1. Open the file with the Viewmodel panel: `blender viewmodels.blend --python viewmodel_tools.py`. In the 3D
    Viewport, press N and pick the **Viewmodel** tab.
@@ -23,8 +22,8 @@ below.
 Layout:
 
 - `viewmodels.blend`: the Blender file for every viewmodel. It holds one **scene** per gun, called a project:
-  `jinrai_tachi` and `jinrai_milso`. Each scene has one rig and one action, and both teams' arms (see One scene per
-  gun).
+  `jinrai_tachi`, `jinrai_milso`, and the two ZR68C scenes `jinrai_zr68c` and `nsf_zr68c`. The Tachi and MilSO scenes
+  have one rig and one action each, and both teams' arms (see One scene per gun).
 - `PROJECT/` (such as `jinrai_tachi/`): the project's `.qc`, `reference.smd` and `anims/*.smd` (written by the
   export). The scripts take project names.
 - `nsf_GUN/` (such as `nsf_tachi/`): the NSF model's `.qc`, `reference.smd` and its shipped clips in `anims/`. It has
@@ -45,33 +44,6 @@ Run the scripts from this folder (`neo/modelsrc/weapons`).
 
 Requirements: Blender 5.2.3 or newer with Blender Source Tools 3.4.3 or newer enabled; Python 3 and Valve's
 `studiomdl.exe` (Source SDK Base 2013 Multiplayer) for compiling.
-
-### Setup
-
-1. Install Blender 5.2.3 or newer. The files are tested with Blender 5.2.3 and Blender Source Tools 3.4.3.
-2. Download Blender Source Tools (a `.zip` file) from steamreview.org/BlenderSourceTools.
-3. In Blender, open Edit > Preferences > Add-ons. Open the menu with the arrow at the top right of the add-on list
-   and pick **Install from Disk...**. Pick the `.zip` file.
-4. Make sure **Blender Source Tools** has a check mark in the add-on list. The export enables the add-on but cannot
-   install it: without it the export stops with `Add-on not loaded: "io_scene_valvesource"`.
-5. To compile models, install Python 3 and the Steam tool **Source SDK Base 2013 Multiplayer** (see Compiling
-   models).
-
-On Windows, the commands in this file work in PowerShell and in Command Prompt as written:
-
-- Go to this folder first: `cd neo\modelsrc\weapons` in the neoAssets clone. A path can use `/` or `\`. Put a path
-  that has spaces in double quotes.
-- If the shell does not find `blender`, add the Blender folder to the path of that shell window. Use the folder
-  that holds `blender.exe` on your machine, for example:
-  - PowerShell: `$env:Path += ";C:\Program Files\Blender Foundation\Blender 5.2"`
-  - Command Prompt: `set "PATH=%PATH%;C:\Program Files\Blender Foundation\Blender 5.2"`
-- Keep the `--` in a command. The words after it go to the script, not to Blender.
-- If the shell does not find `python`, try `py`.
-- The Viewmodel panel needs no command line. Start Blender, open `viewmodels.blend`, open a Text Editor (the
-  Scripting tab has one), pick Text > Open and `viewmodel_tools.py`, then Text > Run Script. **Export gun** then
-  runs the export with the same Blender.
-- "The terminal" is the window Blender was started from. If Blender was not started from a shell, pick Window >
-  Toggle System Console to see the lines the scripts print.
 
 ### One scene per gun
 
@@ -129,8 +101,8 @@ field of view. The camera matches the game this way:
 
 - The game puts the model at the player's eye, then moves it by `ViewModelOffset` (`forward`, `right`, `up`) in
   `game/neo/scripts/weapon_GUN.txt`. The camera moves by the opposite amount instead, so the export is unchanged.
-  Forward in Blender is -Y, right is -X, up is +Z, so the camera sits at (right, forward, -up): Tachi (5, 5, 0).
-  It looks along -Y with +Z up.
+  Forward in Blender is -Y, right is -X, up is +Z, so the camera sits at (right, forward, -up): ZR68C (8, 10, 0),
+  Tachi (5, 5, 0). It looks along -Y with +Z up.
 - The lens has a vertical field of view of 46.83 degrees (Sensor Fit: Vertical). That is the game's `VMFov` of 60,
   which Source measures horizontally on a 4:3 screen. The game reads `VMFov` at the top level of the weapon script
   (60 if absent); the `fov` key inside `ViewModelOffset` is not used.
@@ -224,27 +196,13 @@ the move over more frames.
 
 ## Compiling models
 
-`studiomdl.exe` comes with the Steam tool Source SDK Base 2013 Multiplayer. To install it, show **Tools** in the
-Steam Library list and install that entry. The compiler is `bin\studiomdl.exe` in the tool's folder, by default
-`C:\Program Files (x86)\Steam\steamapps\common\Source SDK Base 2013 Multiplayer`. Use the 32-bit one in `bin`, not
-the one in `bin\x64`.
-
-1. Export the project (Exporting animations).
-2. Close the game if it runs from the game directory you compile into.
-3. Run `compile_viewmodels.py` with Python 3 (not with Blender), with both team projects of the gun:
+`--compiler` is Source SDK Base 2013 Multiplayer's `studiomdl.exe` (the 32-bit one in `bin/`). `--game` is a game
+directory that contains `gameinfo.txt`: the `game/neo` folder of a neo checkout. neoAssets has no `gameinfo.txt`, so it
+cannot be used. The compile writes the models into that directory's `models/weapons/`, not into the source tree.
 
 ```sh
 python compile_viewmodels.py jinrai_tachi nsf_tachi --compiler "C:/Program Files (x86)/Steam/steamapps/common/Source SDK Base 2013 Multiplayer/bin/studiomdl.exe" --game "C:/src/neo/game/neo"
 ```
-
-- `--compiler` is the full path of `studiomdl.exe`.
-- `--game` is the game directory the models go to. It must contain `gameinfo.txt`: the `game/neo` folder of a neo
-  checkout. neoAssets has no `gameinfo.txt`, so it cannot be used.
-- Do not add studiomdl options. The script runs studiomdl with a temporary game configuration of its own and does
-  not change `gameinfo.txt`.
-- The script copies the compiled files (`.mdl`, `.vvd` and the `.vtx` files) into `models/weapons/` of the `--game`
-  directory and prints `Installed PATH` for each. It overwrites older models there. It writes nothing into the
-  source tree.
 
 On Linux, run `studiomdl.exe` with Wine. Pass this wrapper script as `--compiler`; it turns path arguments into
 Windows paths, which studiomdl needs:
@@ -262,16 +220,8 @@ exec wine "$HOME/sdk2013mp/bin/studiomdl.exe" "${args[@]}"
 python3 compile_viewmodels.py jinrai_tachi nsf_tachi --compiler ~/bin/studiomdl-wine --game ~/src/neo/game/neo
 ```
 
-### See the model in game
-
-1. Start a game that runs from the `--game` directory (a neo build that uses that `game/neo` folder). The compile
-   put the models there, so there is nothing to copy. If the game ran during the compile, start it again.
-2. Load a map, take the weapon, and play the animation (draw, reload, ...).
-3. To keep the result, copy the generated files (`v_*_tachi.*` for the Tachi) from the
-   game directory's `models/weapons/` to neoAssets `neo/models/weapons/` and commit them with the sources.
-
-The CMake configure step of neo copies neoAssets files into `game/neo` and can replace models compiled there.
-Compile again after a configure, or do step 3 first in the neoAssets checkout that the configure uses.
+Then copy the generated files (`v_*_tachi.*` for the Tachi, `v_*_zr68c.*` for the ZR68C) from the game directory's
+`models/weapons/` to neoAssets `neo/models/weapons/`. The compile overwrites older models in the game directory.
 
 
 ## Lowered pistols with an empty magazine
