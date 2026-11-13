@@ -336,6 +336,12 @@ The AA13 has the same four clips. It joins `reload` after f58 (the drum fully ou
 the drum seat. Slots: `drawunloaded` f0-44, `drawtocycle` f0-37, `skipcycle` f0-18. Its unload step has two sound
 pieces (`reload_unload`, `reload_unload_part2`: the release tick and the drum pull).
 
+The SRS (bolt action) has the same four clips. It joins `reload` after f30 (its magazine moves into the hand there)
+and f79, and leaves it at f56, the magazine seat. Slots: `drawunloaded` f0-38, `drawtocycle` f0-31, `skipcycle`
+f0-16 (ends on `idle` f0: the SRS idle sequence has no `01`). Its `charge` sequence (the bolt after each shot) is
+unchanged; the marker `charge:3_cycle` (f25, the bolt home) gives the `charge` row of the phases file, the time
+the next round counts as chambered after a shot.
+
 The PZ252 (drum-fed) has the same four clips. It joins `reload` after f70 and f143, and leaves it at f143, after
 the drum latch and its jerk (the load step is credited at f121, the drum seat; its third sound, the latch, plays in
 the full and after-unload clips only). Slots: `drawunloaded` f0-40, `drawtocycle` f0-30, `skipcycle` f0-11. Its
