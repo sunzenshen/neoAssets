@@ -146,7 +146,7 @@ def write_composites(folder, markers, write=True, layout=None):
             continue
         body = [text for time, frame in enumerate(joined) for text in ['time %d' % time] + frame]
         (folder / 'anims' / (output + '.smd')).write_text(
-            '\n'.join(header + body + ['end']) + '\n', encoding='ascii')
+            '\n'.join(header + body + ['end']) + '\n', encoding='ascii', newline='\n')
         print('COMPOSED', output, len(joined), 'frames')
     return times, joins, sources
 
@@ -258,7 +258,7 @@ def fill_phases(folder, times, joins, sources, base=None):
     for (start, end), seconds in sorted(changes, reverse=True):
         text = text[:start] + seconds + text[end:]
     check_ready([folder] + ([base] if base else []), path, text)
-    path.write_text(text, encoding='ascii')
+    path.write_text(text, encoding='ascii', newline='\n')
     print('PHASES', path.name, '\n' + text)
 
 
