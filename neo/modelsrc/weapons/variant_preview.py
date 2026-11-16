@@ -122,6 +122,7 @@ def gun_collection(scene, name, gun, objects, shown):
     collection[VARIANT_KEY] = gun
     if gun in GAME_DEFAULT:
         collection[NOTE_KEY] = GAME_DEFAULT[gun]
+    collection.vs.export = False  # a preview only; Source Tools reports an export collection with no export object
     scene.collection.children.link(collection)
     for obj in objects:
         collection.objects.link(obj)
