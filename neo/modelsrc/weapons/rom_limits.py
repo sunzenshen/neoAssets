@@ -64,7 +64,7 @@ def write_widen(widen):
     """Write rom_widen.json, one entry per line and sorted, so a new widening is a one-line diff."""
     rows = [json.dumps({'gun': gun, 'bone': bone, 'slots': sorted(slots), 'why': why})
             for (gun, bone), (slots, why) in sorted(widen.items())]
-    WIDEN_FILE.write_text('[\n' + ',\n'.join('  ' + row for row in rows) + '\n]\n', encoding='ascii')
+    WIDEN_FILE.write_text('[\n' + ',\n'.join('  ' + row for row in rows) + '\n]\n', encoding='ascii', newline='\n')
 
 
 def add_widen(gun, bone, slots, why):
@@ -301,7 +301,7 @@ def make_spec(scenes):
         spec['guns'][gun_of(project)] = {'project': project, 'bones': bones}
         print('SPEC', project, len(data[project]['shipped']), 'shipped slots',
               sorted(set(data[project]['poses']) - set(data[project]['shipped'])), 'left out')
-    SPEC.write_text(spec_text(spec), encoding='ascii')
+    SPEC.write_text(spec_text(spec), encoding='ascii', newline='\n')
     print('WROTE', SPEC.name, len(spec['guns']), 'guns')
 
 
