@@ -19,6 +19,7 @@ the plain Scene Export below. Only the script does these steps:
 
 * It checks the range-of-motion limits of the rigs and stops when a key is outside a limit.
 * It keeps the shipped clips unchanged and stops when one would change.
+* It writes the glued clips, the reload phases files and `viewmodels_post_export.blend`.
 
 ## Exporting other animations
 
