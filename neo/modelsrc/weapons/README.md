@@ -2,7 +2,7 @@
 
 The Tachi and ZR68C viewmodels are the first weapons maintained under these conventions, followed by the ZR68-S,
 ZR68-L, Kyla, MilSO, AA13, SRS, PZ252, the MPN45 family (MPN45, MPN45-S), the SRM family (SRM, SRM-S), the
-Jitte family (Jitte, Jitte-S), the M41 family (M41, M41-S, M41-L) and the MX family (MX, MX-S).
+Jitte family (Jitte, Jitte-S), the M41 family (M41, M41-S, M41-L), the MX family (MX, MX-S) and the Supa-7.
 Expect the folder layout, scripts and steps here to change as more weapons are added.
 
 ## Change an animation (quick recipe)
@@ -30,9 +30,9 @@ Layout:
   `jinrai_tachi`, `jinrai_zr68c`, `jinrai_zr68s`, `jinrai_zr68l`, `jinrai_klya9` (the Kyla), `jinrai_milso`,
   `jinrai_aa13`, `jinrai_srs`, `jinrai_pz` (the PZ252), `jinrai_mpn` (the MPN45, unsilenced) and `jinrai_mpn_s` (the
   MPN45-S, the game's default MPN45), `jinrai_srm`, `jinrai_srm_s`, `jinrai_jitte`, `jinrai_jittes` (the Jitte-S,
-  scoped), `jinrai_mosok41` (the M41), `jinrai_mosok41s` (the M41-S), `jinrai_mosok41l` (the M41-L), `jinrai_mx` and
-  `jinrai_mxs` (the MX-S, silenced). Each scene has one rig and one action, and both teams' arms (see One scene per
-  gun).
+  scoped), `jinrai_mosok41` (the M41), `jinrai_mosok41s` (the M41-S), `jinrai_mosok41l` (the M41-L), `jinrai_mx`,
+  `jinrai_mxs` (the MX-S, silenced) and `jinrai_shotgun` (the Supa-7). Each scene has one rig and one action, and
+  both teams' arms (see One scene per gun).
 - `PROJECT/` (such as `jinrai_tachi/`): the project's `.qc`, `reference.smd`, `anims/*.smd` (written by the
   export) and `composites.txt` (if used). The scripts take project names.
 - `nsf_GUN/` (such as `nsf_zr68c/`): the NSF model's `.qc`, `reference.smd` and its shipped clips in `anims/`. It has
@@ -40,7 +40,7 @@ Layout:
 - `jinrai_GUN/glued.qci` (guns with glued clips, now the ZR68C, ZR68-L, Kyla, AA13, SRS, PZ252, MPN45, SRM, Jitte,
   M41 and MX): the `$sequence` lines of the glued clips, read from `jinrai_GUN/anims/`. Both team `.qc` files include
   it, so the NSF model compiles the Jinrai glued clips. The variants of a gun family include their base gun's file
-  instead (see Gun families).
+  instead (see Gun families). The Supa-7's file holds an authored slot instead (see Supa-7 pump).
 - `GUN/viewmodel.qci` (such as `tachi/viewmodel.qci`): the QC lines both team models of a gun share. Each team's `.qc`
   sets only `$modelname` and includes this file. The ZR68-S and ZR68-L follow the ZR68C layout
   (`zr68s/viewmodel.qci`, `zr68l/viewmodel.qci`); the ZR68-L scope's preview images are the MX's, in `mx/textures/`.
@@ -473,6 +473,18 @@ glued clip changes.
 The timeline markers carry the step and sound times of each clip (`CLIP:STEP`, `CLIP:STEP.sound`), the times the
 phases file gets. The export rewrites the file only when its inputs change: two builds show the same content, but
 Blender saves the window layout and some camera properties in a varying order, so the bytes differ.
+
+## Supa-7 pump (`reloadpump`)
+
+The Supa-7 scene `jinrai_shotgun` has one authored slot, `reloadpump` (f0-26). The game plays it in a reload that
+starts with no round in the chamber: after the first shell goes in, the support hand racks the pump, then the
+reload continues. The slot starts on the pose of `reloadinsert` f15 and ends on the pose of `reloadinsert` f0.
+
+- `reloadpump` is a plain slot. It has no composite, no markers and no phases file.
+- The export writes it to `jinrai_shotgun/anims/reloadpump.smd`. Export with `-- jinrai_shotgun`.
+- `jinrai_shotgun/glued.qci` holds its `$sequence` line. Both team `.qc` files include that file, so the NSF model
+  plays the same clip. Compile `jinrai_shotgun` and `nsf_shotgun`.
+- The shipped Supa-7 clips (`reloadstart`, `reloadinsert`, `reloadend`, ...) are unchanged.
 
 ## Compiling models
 
