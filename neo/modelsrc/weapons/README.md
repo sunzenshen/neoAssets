@@ -486,6 +486,22 @@ reload continues. The slot starts on the pose of `reloadinsert` f15 and ends on 
   plays the same clip. Compile `jinrai_shotgun` and `nsf_shotgun`.
 - The shipped Supa-7 clips (`reloadstart`, `reloadinsert`, `reloadend`, ...) are unchanged.
 
+### Side-saddle rounds (bodygroups)
+
+The four slug rounds on the Supa-7 side saddle are bodygroups, `saddle1` (nearest the muzzle) to `saddle4`, so the
+game can hide them one at a time. `shotgun/viewmodel.qci` has the `$bodygroup` blocks: `body` is `reference.smd`,
+and each `saddleN` is `saddleN.smd` or `blank`.
+
+- `saddle1.smd` to `saddle4.smd` and the `reference.smd` of both teams (`jinrai_shotgun/`, `nsf_shotgun/`) have no
+  source in `viewmodels.blend`. The export writes animations only, and the preview mesh in the scene still has the
+  four rounds in one piece. No step here makes these files again.
+- They were made one time by a script that is not in this repository. It read each team's `reference.smd`, found
+  the four rounds (each is a separate mesh piece of 76 triangles on the material `fntac_matid2`), put them in
+  order along the barrel, and moved each one to its own SMD with the same skeleton. All other lines of
+  `reference.smd` stayed as they were.
+- To change a round or the split, edit these SMD files (a text format), then compile `jinrai_shotgun` and
+  `nsf_shotgun`. An animation export does not touch them.
+
 ## Compiling models
 
 `studiomdl.exe` comes with the Steam tool Source SDK Base 2013 Multiplayer. To install it, show **Tools** in the
